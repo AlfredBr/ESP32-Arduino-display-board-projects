@@ -99,6 +99,22 @@ void my_print(lv_log_level_t level, const char *file, uint32_t line, const char 
 }
 #endif
 
+// Completion is acknowledged only after DMA stops reading the LVGL buffer.
+static lv_disp_drv_t* pendingFlush = nullptr;
+
+void finishDisplayFlush() {
+  if (pendingFlush && !tft.dmaBusy()) {
+    lv_disp_drv_t* completed = pendingFlush;
+    pendingFlush = nullptr;
+    lv_disp_flush_ready(completed);
+  }
+}
+
+void waitDisplayFlush(lv_disp_drv_t*) {
+  tft.waitDMA();
+  finishDisplayFlush();
+}
+
 /* Display flushing */
 void my_disp_flush(lv_disp_drv_t *disp, const lv_area_t *area, lv_color_t *color_p)
 {
@@ -109,8 +125,8 @@ void my_disp_flush(lv_disp_drv_t *disp, const lv_area_t *area, lv_color_t *color
 
   tft.pushImageDMA(area->x1, area->y1, area->x2 - area->x1 + 1, area->y2 - area->y1 + 1, (lgfx::swap565_t *)&color_p->full);
 
-  tft.waitDMA(); // LVGL must not reuse a buffer while DMA reads it.
-  lv_disp_flush_ready(disp); /* tell lvgl that flushing is done */
+  pendingFlush = disp;
+  finishDisplayFlush();
 }
 
 /*Read the touchpad*/
@@ -181,6 +197,7 @@ void setup()
   disp_drv.hor_res = screenWidth;
   disp_drv.ver_res = screenHeight;
   disp_drv.flush_cb = my_disp_flush;
+  disp_drv.wait_cb = waitDisplayFlush;
   disp_drv.draw_buf = &draw_buf;
   lv_disp_drv_register(&disp_drv);
 
@@ -227,7 +244,9 @@ void setup()
 void loop()
 {
   
+  finishDisplayFlush();
   lv_timer_handler(); /* let the GUI do its work */
+  finishDisplayFlush();
   delay(5);
 }
 

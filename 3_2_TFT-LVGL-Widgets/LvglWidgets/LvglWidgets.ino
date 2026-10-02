@@ -61,7 +61,7 @@ public:
       cfg.panel_height = 240;   // 実際に表示可能な高さ
       cfg.offset_x = 0;         // パネルのX方向オフセット量
       cfg.offset_y = 0;         // パネルのY方向オフセット量
-      cfg.offset_rotation = 0;  // 值在旋转方向的偏移0~7（4~7是倒置的） 
+      cfg.offset_rotation = 0;  // 值在旋转方向的偏移0~7（4~7是倒置的）
       cfg.dummy_read_pixel = 8; // 在读取像素之前读取的虚拟位数
       cfg.dummy_read_bits = 1;  // 读取像素以外的数据之前的虚拟读取位数
       cfg.readable = false;     // 如果可以读取数据，则设置为 true
@@ -163,7 +163,7 @@ void setup()
   tft.init();
   tft.initDMA();
   tft.startWrite();
- 
+
   touch.begin();
   lv_init();
 

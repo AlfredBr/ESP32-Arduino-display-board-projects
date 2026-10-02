@@ -126,11 +126,13 @@ void A0logo_in_Animation(lv_obj_t *TargetObject, int delay)
     lv_anim_init(&PropertyAnimation_0);
     lv_anim_set_time(&PropertyAnimation_0, 500);
     lv_anim_set_user_data(&PropertyAnimation_0, PropertyAnimation_0_user_data);
+    // Opacity endpoints are absolute; adding the current value would overflow.
+    lv_obj_set_style_opa(TargetObject, LV_OPA_COVER, 0);
     lv_anim_set_custom_exec_cb(&PropertyAnimation_0, _ui_anim_callback_set_opacity);
     lv_anim_set_values(&PropertyAnimation_0, 255, 0);
     lv_anim_set_path_cb(&PropertyAnimation_0, lv_anim_path_linear);
     lv_anim_set_delay(&PropertyAnimation_0, delay + 0);
-    // lv_anim_set_deleted_cb(&PropertyAnimation_0, _ui_anim_callback_free_user_data);
+    lv_anim_set_deleted_cb(&PropertyAnimation_0, _ui_anim_callback_free_user_data);
     lv_anim_set_playback_time(&PropertyAnimation_0, 0);
     lv_anim_set_playback_delay(&PropertyAnimation_0, 0);
     lv_anim_set_repeat_count(&PropertyAnimation_0, 0);
@@ -148,7 +150,7 @@ void A0logo_in_Animation(lv_obj_t *TargetObject, int delay)
     lv_anim_set_values(&PropertyAnimation_1, 255, 355);
     lv_anim_set_path_cb(&PropertyAnimation_1, lv_anim_path_linear);
     lv_anim_set_delay(&PropertyAnimation_1, delay + 0);
-    // lv_anim_set_deleted_cb(&PropertyAnimation_1, _ui_anim_callback_free_user_data);
+    lv_anim_set_deleted_cb(&PropertyAnimation_1, _ui_anim_callback_free_user_data);
     lv_anim_set_playback_time(&PropertyAnimation_1, 0);
     lv_anim_set_playback_delay(&PropertyAnimation_1, 0);
     lv_anim_set_repeat_count(&PropertyAnimation_1, 0);
@@ -165,17 +167,19 @@ void A0_label_Animation(lv_obj_t *TargetObject, int delay)
     lv_anim_init(&PropertyAnimation_0);
     lv_anim_set_time(&PropertyAnimation_0, 1000);
     lv_anim_set_user_data(&PropertyAnimation_0, PropertyAnimation_0_user_data);
+    // Opacity endpoints are absolute; adding the current value would overflow.
+    lv_obj_set_style_opa(TargetObject, LV_OPA_TRANSP, 0);
     lv_anim_set_custom_exec_cb(&PropertyAnimation_0, _ui_anim_callback_set_opacity);
     lv_anim_set_values(&PropertyAnimation_0, 0, 255);
     lv_anim_set_path_cb(&PropertyAnimation_0, lv_anim_path_linear);
     lv_anim_set_delay(&PropertyAnimation_0, delay + 0);
-    // lv_anim_set_deleted_cb(&PropertyAnimation_0, _ui_anim_callback_free_user_data);
+    lv_anim_set_deleted_cb(&PropertyAnimation_0, _ui_anim_callback_free_user_data);
     lv_anim_set_playback_time(&PropertyAnimation_0, 0);
     lv_anim_set_playback_delay(&PropertyAnimation_0, 0);
     lv_anim_set_repeat_count(&PropertyAnimation_0, 0);
     lv_anim_set_repeat_delay(&PropertyAnimation_0, 0);
     lv_anim_set_early_apply(&PropertyAnimation_0, false);
-    lv_anim_set_get_value_cb(&PropertyAnimation_0, &_ui_anim_callback_get_opacity);
+
     lv_anim_start(&PropertyAnimation_0);
 }
 void A1Rs_Animation(lv_obj_t *TargetObject, int delay)
@@ -191,7 +195,7 @@ void A1Rs_Animation(lv_obj_t *TargetObject, int delay)
     lv_anim_set_values(&PropertyAnimation_0, 0, 3600);
     lv_anim_set_path_cb(&PropertyAnimation_0, lv_anim_path_linear);
     lv_anim_set_delay(&PropertyAnimation_0, delay + 0);
-    // lv_anim_set_deleted_cb(&PropertyAnimation_0, _ui_anim_callback_free_user_data);
+    lv_anim_set_deleted_cb(&PropertyAnimation_0, _ui_anim_callback_free_user_data);
     lv_anim_set_playback_time(&PropertyAnimation_0, 0);
     lv_anim_set_playback_delay(&PropertyAnimation_0, 0);
     lv_anim_set_repeat_count(&PropertyAnimation_0, LV_ANIM_REPEAT_INFINITE);
@@ -213,7 +217,7 @@ void A1showM_Animation(lv_obj_t *TargetObject, int delay)
     lv_anim_set_values(&PropertyAnimation_0, 0, 1200);
     lv_anim_set_path_cb(&PropertyAnimation_0, lv_anim_path_ease_out);
     lv_anim_set_delay(&PropertyAnimation_0, delay + 0);
-    // lv_anim_set_deleted_cb(&PropertyAnimation_0, _ui_anim_callback_free_user_data);
+    lv_anim_set_deleted_cb(&PropertyAnimation_0, _ui_anim_callback_free_user_data);
     lv_anim_set_playback_time(&PropertyAnimation_0, 0);
     lv_anim_set_playback_delay(&PropertyAnimation_0, 0);
     lv_anim_set_repeat_count(&PropertyAnimation_0, 0);
@@ -235,7 +239,7 @@ void A1showH_Animation(lv_obj_t *TargetObject, int delay)
     lv_anim_set_values(&PropertyAnimation_0, 0, 300);
     lv_anim_set_path_cb(&PropertyAnimation_0, lv_anim_path_ease_out);
     lv_anim_set_delay(&PropertyAnimation_0, delay + 0);
-    // lv_anim_set_deleted_cb(&PropertyAnimation_0, _ui_anim_callback_free_user_data);
+    lv_anim_set_deleted_cb(&PropertyAnimation_0, _ui_anim_callback_free_user_data);
     lv_anim_set_playback_time(&PropertyAnimation_0, 0);
     lv_anim_set_playback_delay(&PropertyAnimation_0, 0);
     lv_anim_set_repeat_count(&PropertyAnimation_0, 0);
@@ -256,7 +260,7 @@ void A2_top_Animation(lv_obj_t *TargetObject, int delay)
     lv_anim_set_values(&PropertyAnimation_0, -80, -29);
     lv_anim_set_path_cb(&PropertyAnimation_0, lv_anim_path_overshoot);
     lv_anim_set_delay(&PropertyAnimation_0, delay + 0);
-    // lv_anim_set_deleted_cb(&PropertyAnimation_0, _ui_anim_callback_free_user_data);
+    lv_anim_set_deleted_cb(&PropertyAnimation_0, _ui_anim_callback_free_user_data);
     lv_anim_set_playback_time(&PropertyAnimation_0, 0);
     lv_anim_set_playback_delay(&PropertyAnimation_0, 0);
     lv_anim_set_repeat_count(&PropertyAnimation_0, 0);
@@ -277,7 +281,7 @@ void A2_bottom_Animation(lv_obj_t *TargetObject, int delay)
     lv_anim_set_values(&PropertyAnimation_0, 50, 38);
     lv_anim_set_path_cb(&PropertyAnimation_0, lv_anim_path_overshoot);
     lv_anim_set_delay(&PropertyAnimation_0, delay + 0);
-    // lv_anim_set_deleted_cb(&PropertyAnimation_0, _ui_anim_callback_free_user_data);
+    lv_anim_set_deleted_cb(&PropertyAnimation_0, _ui_anim_callback_free_user_data);
     lv_anim_set_playback_time(&PropertyAnimation_0, 0);
     lv_anim_set_playback_delay(&PropertyAnimation_0, 0);
     lv_anim_set_repeat_count(&PropertyAnimation_0, 0);
@@ -298,7 +302,7 @@ void A3_pos1_Animation(lv_obj_t *TargetObject, int delay)
     lv_anim_set_values(&PropertyAnimation_0, 350, -350);
     lv_anim_set_path_cb(&PropertyAnimation_0, lv_anim_path_linear);
     lv_anim_set_delay(&PropertyAnimation_0, delay + 0);
-    // lv_anim_set_deleted_cb(&PropertyAnimation_0, _ui_anim_callback_free_user_data);
+    lv_anim_set_deleted_cb(&PropertyAnimation_0, _ui_anim_callback_free_user_data);
     lv_anim_set_playback_time(&PropertyAnimation_0, 0);
     lv_anim_set_playback_delay(&PropertyAnimation_0, 0);
     lv_anim_set_repeat_count(&PropertyAnimation_0, 0);
@@ -319,7 +323,7 @@ void A3_top_in_Animation(lv_obj_t *TargetObject, int delay)
     lv_anim_set_values(&PropertyAnimation_0, -120, -75);
     lv_anim_set_path_cb(&PropertyAnimation_0, lv_anim_path_overshoot);
     lv_anim_set_delay(&PropertyAnimation_0, delay + 0);
-    // lv_anim_set_deleted_cb(&PropertyAnimation_0, _ui_anim_callback_free_user_data);
+    lv_anim_set_deleted_cb(&PropertyAnimation_0, _ui_anim_callback_free_user_data);
     lv_anim_set_playback_time(&PropertyAnimation_0, 0);
     lv_anim_set_playback_delay(&PropertyAnimation_0, 0);
     lv_anim_set_repeat_count(&PropertyAnimation_0, 0);
@@ -340,7 +344,7 @@ void A3_top_bottom_Animation(lv_obj_t *TargetObject, int delay)
     lv_anim_set_values(&PropertyAnimation_0, 145, 60);
     lv_anim_set_path_cb(&PropertyAnimation_0, lv_anim_path_overshoot);
     lv_anim_set_delay(&PropertyAnimation_0, delay + 0);
-    // lv_anim_set_deleted_cb(&PropertyAnimation_0, _ui_anim_callback_free_user_data);
+    lv_anim_set_deleted_cb(&PropertyAnimation_0, _ui_anim_callback_free_user_data);
     lv_anim_set_playback_time(&PropertyAnimation_0, 0);
     lv_anim_set_playback_delay(&PropertyAnimation_0, 0);
     lv_anim_set_repeat_count(&PropertyAnimation_0, 0);
@@ -357,17 +361,19 @@ void A7_0_Animation(lv_obj_t *TargetObject, int delay)
     lv_anim_init(&PropertyAnimation_0);
     lv_anim_set_time(&PropertyAnimation_0, 500);
     lv_anim_set_user_data(&PropertyAnimation_0, PropertyAnimation_0_user_data);
+    // Opacity endpoints are absolute; adding the current value would overflow.
+    lv_obj_set_style_opa(TargetObject, LV_OPA_TRANSP, 0);
     lv_anim_set_custom_exec_cb(&PropertyAnimation_0, _ui_anim_callback_set_opacity);
     lv_anim_set_values(&PropertyAnimation_0, 0, 255);
     lv_anim_set_path_cb(&PropertyAnimation_0, lv_anim_path_linear);
     lv_anim_set_delay(&PropertyAnimation_0, delay + 0);
-    // lv_anim_set_deleted_cb(&PropertyAnimation_0, _ui_anim_callback_free_user_data);
+    lv_anim_set_deleted_cb(&PropertyAnimation_0, _ui_anim_callback_free_user_data);
     lv_anim_set_playback_time(&PropertyAnimation_0, 0);
     lv_anim_set_playback_delay(&PropertyAnimation_0, 0);
     lv_anim_set_repeat_count(&PropertyAnimation_0, 0);
     lv_anim_set_repeat_delay(&PropertyAnimation_0, 0);
     lv_anim_set_early_apply(&PropertyAnimation_0, false);
-    lv_anim_set_get_value_cb(&PropertyAnimation_0, &_ui_anim_callback_get_opacity);
+
     lv_anim_start(&PropertyAnimation_0);
 }
 void A5_0_Animation(lv_obj_t *TargetObject, int delay)
@@ -383,7 +389,7 @@ void A5_0_Animation(lv_obj_t *TargetObject, int delay)
     lv_anim_set_values(&PropertyAnimation_0, -150, -103);
     lv_anim_set_path_cb(&PropertyAnimation_0, lv_anim_path_overshoot);
     lv_anim_set_delay(&PropertyAnimation_0, delay + 0);
-    // lv_anim_set_deleted_cb(&PropertyAnimation_0, _ui_anim_callback_free_user_data);
+    lv_anim_set_deleted_cb(&PropertyAnimation_0, _ui_anim_callback_free_user_data);
     lv_anim_set_playback_time(&PropertyAnimation_0, 0);
     lv_anim_set_playback_delay(&PropertyAnimation_0, 0);
     lv_anim_set_repeat_count(&PropertyAnimation_0, 0);
@@ -401,7 +407,7 @@ void A5_0_Animation(lv_obj_t *TargetObject, int delay)
     lv_anim_set_values(&PropertyAnimation_1, 0, 255);
     lv_anim_set_path_cb(&PropertyAnimation_1, lv_anim_path_linear);
     lv_anim_set_delay(&PropertyAnimation_1, delay + 0);
-    // lv_anim_set_deleted_cb(&PropertyAnimation_1, _ui_anim_callback_free_user_data);
+    lv_anim_set_deleted_cb(&PropertyAnimation_1, _ui_anim_callback_free_user_data);
     lv_anim_set_playback_time(&PropertyAnimation_1, 0);
     lv_anim_set_playback_delay(&PropertyAnimation_1, 0);
     lv_anim_set_repeat_count(&PropertyAnimation_1, 0);
@@ -422,7 +428,7 @@ void A5_1_Animation(lv_obj_t *TargetObject, int delay)
     lv_anim_set_values(&PropertyAnimation_0, 150, 65);
     lv_anim_set_path_cb(&PropertyAnimation_0, lv_anim_path_overshoot);
     lv_anim_set_delay(&PropertyAnimation_0, delay + 0);
-    // lv_anim_set_deleted_cb(&PropertyAnimation_0, _ui_anim_callback_free_user_data);
+    lv_anim_set_deleted_cb(&PropertyAnimation_0, _ui_anim_callback_free_user_data);
     lv_anim_set_playback_time(&PropertyAnimation_0, 0);
     lv_anim_set_playback_delay(&PropertyAnimation_0, 0);
     lv_anim_set_repeat_count(&PropertyAnimation_0, 0);
@@ -443,7 +449,7 @@ void A6_0_Animation(lv_obj_t *TargetObject, int delay)
     lv_anim_set_values(&PropertyAnimation_0, -100, 0);
     lv_anim_set_path_cb(&PropertyAnimation_0, lv_anim_path_overshoot);
     lv_anim_set_delay(&PropertyAnimation_0, delay + 0);
-    // lv_anim_set_deleted_cb(&PropertyAnimation_0, _ui_anim_callback_free_user_data);
+    lv_anim_set_deleted_cb(&PropertyAnimation_0, _ui_anim_callback_free_user_data);
     lv_anim_set_playback_time(&PropertyAnimation_0, 0);
     lv_anim_set_playback_delay(&PropertyAnimation_0, 0);
     lv_anim_set_repeat_count(&PropertyAnimation_0, 0);
@@ -462,13 +468,13 @@ void A6_0_Animation(lv_obj_t *TargetObject, int delay)
     lv_anim_set_values(&PropertyAnimation_1, 0, 255);
     lv_anim_set_path_cb(&PropertyAnimation_1, lv_anim_path_linear);
     lv_anim_set_delay(&PropertyAnimation_1, delay + 0);
-    // lv_anim_set_deleted_cb(&PropertyAnimation_1, _ui_anim_callback_free_user_data);
+    lv_anim_set_deleted_cb(&PropertyAnimation_1, _ui_anim_callback_free_user_data);
     lv_anim_set_playback_time(&PropertyAnimation_1, 0);
     lv_anim_set_playback_delay(&PropertyAnimation_1, 0);
     lv_anim_set_repeat_count(&PropertyAnimation_1, 0);
     lv_anim_set_repeat_delay(&PropertyAnimation_1, 0);
     lv_anim_set_early_apply(&PropertyAnimation_1, false);
-    lv_anim_set_get_value_cb(&PropertyAnimation_1, &_ui_anim_callback_get_opacity);
+
     lv_anim_start(&PropertyAnimation_1);
 }
 void A6_1_Animation(lv_obj_t *TargetObject, int delay)
@@ -484,7 +490,7 @@ void A6_1_Animation(lv_obj_t *TargetObject, int delay)
     lv_anim_set_values(&PropertyAnimation_0, 50, 0);
     lv_anim_set_path_cb(&PropertyAnimation_0, lv_anim_path_overshoot);
     lv_anim_set_delay(&PropertyAnimation_0, delay + 0);
-    // lv_anim_set_deleted_cb(&PropertyAnimation_0, _ui_anim_callback_free_user_data);
+    lv_anim_set_deleted_cb(&PropertyAnimation_0, _ui_anim_callback_free_user_data);
     lv_anim_set_playback_time(&PropertyAnimation_0, 0);
     lv_anim_set_playback_delay(&PropertyAnimation_0, 0);
     lv_anim_set_repeat_count(&PropertyAnimation_0, 0);
@@ -503,13 +509,13 @@ void A6_1_Animation(lv_obj_t *TargetObject, int delay)
     lv_anim_set_values(&PropertyAnimation_1, 0, 255);
     lv_anim_set_path_cb(&PropertyAnimation_1, lv_anim_path_linear);
     lv_anim_set_delay(&PropertyAnimation_1, delay + 0);
-    // lv_anim_set_deleted_cb(&PropertyAnimation_1, _ui_anim_callback_free_user_data);
+    lv_anim_set_deleted_cb(&PropertyAnimation_1, _ui_anim_callback_free_user_data);
     lv_anim_set_playback_time(&PropertyAnimation_1, 0);
     lv_anim_set_playback_delay(&PropertyAnimation_1, 0);
     lv_anim_set_repeat_count(&PropertyAnimation_1, 0);
     lv_anim_set_repeat_delay(&PropertyAnimation_1, 0);
     lv_anim_set_early_apply(&PropertyAnimation_1, false);
-    lv_anim_set_get_value_cb(&PropertyAnimation_1, &_ui_anim_callback_get_opacity);
+
     lv_anim_start(&PropertyAnimation_1);
 }
 

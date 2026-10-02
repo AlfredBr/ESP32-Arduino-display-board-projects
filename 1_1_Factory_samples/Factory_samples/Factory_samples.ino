@@ -1,7 +1,7 @@
 #define LGFX_USE_V1
 #include "Arduino.h"
 #include <lvgl.h>
-#include "demos/lv_demos.h"
+// LVGL demos are unused; the generated watch UI is initialized below.
 #include <LovyanGFX.hpp>
 #include <Ticker.h>
 #include "CST816D.h"
@@ -12,7 +12,8 @@
 #define TP_RST 1
 
 #define off_pin 35
-#define buf_size 120
+// Partial rendering keeps two buffers within ESP32-C3 internal RAM.
+#define buf_size 60
 
 
 class LGFX : public lgfx::LGFX_Device
@@ -108,6 +109,7 @@ void my_disp_flush(lv_disp_drv_t *disp, const lv_area_t *area, lv_color_t *color
 
   tft.pushImageDMA(area->x1, area->y1, area->x2 - area->x1 + 1, area->y2 - area->y1 + 1, (lgfx::swap565_t *)&color_p->full);
 
+  tft.waitDMA(); // LVGL must not reuse a buffer while DMA reads it.
   lv_disp_flush_ready(disp); /* tell lvgl that flushing is done */
 }
 
@@ -149,6 +151,10 @@ void setup()
   Serial.println("I am LVGL_Arduino");
 
   // ticker.attach(1, tcr1s);
+
+  pinMode(3, OUTPUT);
+  digitalWrite(3, HIGH);
+  pinMode(9, INPUT_PULLUP);
 
   tft.init();
   tft.initDMA();

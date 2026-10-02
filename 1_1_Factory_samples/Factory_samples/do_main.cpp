@@ -18,14 +18,14 @@ void ui_mian(void)
                 delay(20);
                 if (i == 0)
                 {
-                   
+
                     now_is_auto_play = !now_is_auto_play;
                     Serial.println("now_is_auto_play is changed to " + String(now_is_auto_play));
-                 
+
                 }
             }
         },
-        "lvglpx", 4096, NULL, 1, NULL, 1);
+        "lvglpx", 4096, NULL, 1, NULL, tskNO_AFFINITY);
 }
 void auto_play(void)
 {
@@ -92,5 +92,5 @@ void auto_play(void)
                 }
             }
         },
-        "lvglautoplay", 8192, NULL, 1, NULL, 1);
+        "lvglautoplay", 8192, NULL, 1, NULL, tskNO_AFFINITY);
 }

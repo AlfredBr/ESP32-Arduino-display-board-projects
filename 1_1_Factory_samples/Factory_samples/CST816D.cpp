@@ -67,7 +67,7 @@ bool CST816D::getTouch(uint16_t *x, uint16_t *y, uint8_t *gesture)
 
 uint8_t CST816D::i2c_read(uint8_t addr)
 {
-    uint8_t rdData;
+    uint8_t rdData = 0;
     uint8_t rdDataCount;
     do
     {
@@ -75,7 +75,8 @@ uint8_t CST816D::i2c_read(uint8_t addr)
         Wire.write(addr);
         Wire.endTransmission(false); // Restart
         rdDataCount = Wire.requestFrom(I2C_ADDR_CST816D, 1);
-    } while (rdDataCount == 0);
+    } while (false);
+    if (rdDataCount == 0) { return 0; }
     while (Wire.available())
     {
         rdData = Wire.read();

@@ -1,0 +1,12 @@
+Verification completed:
+- ESP32-C3 build and COM3 upload succeeded; flash hashes verified by esptool.
+- Firmware: 678386 bytes (51%); static RAM: 126664 bytes (38%).
+- Desktop: 76957 checks, 14 layouts repeated three times, no accumulating heap allocations.
+- Desktop LVGL heap peak: 19704 bytes (platform-dependent).
+- Device: serial commands rebuilt all seven pages (2-8 slices) successfully.
+- Device left on the four-slice page for hands-on review.
+- Full-pie and ring previews inspected from actual LVGL renderings.
+- Physical touch calibration, appearance, and interaction feel need user review.
+
+Parallel separators: six-pixel constant width; rendering and hit testing share boundaries.
+

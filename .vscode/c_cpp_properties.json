@@ -1,0 +1,31 @@
+{
+  "version": 4,
+  "configurations": [
+    {
+      "name": "ESP32-C3",
+      "compilerPath": "${env:LOCALAPPDATA}/Arduino15/packages/esp32/tools/esp-rv32/2601/bin/riscv32-esp-elf-g++.exe",
+      "intelliSenseMode": "gcc-x64",
+      "cppStandard": "gnu++23",
+      "cStandard": "gnu17",
+      "defines": [
+        "ARDUINO=10819",
+        "ARDUINO_ARCH_ESP32",
+        "ESP_PLATFORM",
+        "ARDUINO_ESP32C3_DEV",
+        "ARDUINO_USB_CDC_ON_BOOT=1",
+        "ARDUINO_USB_MODE=1",
+        "ESP32"
+      ],
+      "includePath": [
+        "${workspaceFolder}",
+        "${env:USERPROFILE}/OneDrive/Documents/Arduino/Libraries/LovyanGFX/src",
+        "${env:LOCALAPPDATA}/Arduino15/packages/esp32/hardware/esp32/3.3.12/cores/esp32",
+        "${env:LOCALAPPDATA}/Arduino15/packages/esp32/hardware/esp32/3.3.12/variants/esp32c3",
+        "${env:LOCALAPPDATA}/Arduino15/packages/esp32/hardware/esp32/3.3.12/libraries/Wire/src",
+        "${env:LOCALAPPDATA}/Arduino15/packages/esp32/hardware/esp32/3.3.12/libraries/SPI/src",
+        "${env:LOCALAPPDATA}/Arduino15/packages/esp32/tools/esp32c3-libs/3.3.12/include/**",
+        "${env:LOCALAPPDATA}/Arduino15/packages/esp32/tools/esp32c3-libs/3.3.12/qio_qspi/include"
+      ]
+    }
+  ]
+}

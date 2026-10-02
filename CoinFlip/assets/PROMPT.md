@@ -1,0 +1,7 @@
+# Coin artwork
+
+Generated with the built-in image-generation tool, transparent background.
+
+## Prompt
+
+Use case: product-mockup. Asset type: two photographic coin-face textures for a small ESP32 coin-flip animation. Create one landscape image with EXACTLY TWO identical-size round gold coins side by side, centered in the left and right halves, on genuine transparent background. Both coins perfectly circular, completely front-facing orthographic view, NO perspective tilt, no cast shadow, both entirely within their half with generous transparent margins. Left coin HEADS: a beautifully struck classical profile bust of a fictional person, embossed word HEADS clearly along the upper rim. Right coin TAILS: embossed elegant eagle with wings spread, word TAILS clearly along upper rim. Matching physical coin designs: lustrous 24-karat yellow gold, realistic reflective highlights from upper-left softbox, dark gold sculpted recesses, fine radial machining, light micro scratches, raised beaded borders and a narrow ridged edge visible uniformly around each circle. Rich warm gold, photographic realism, museum-quality macro product photography. Keep relief and details legible after shrinking each coin to 176 pixels. No currency amount, date, logos, extra text, hand, floor, props or background. TWO coins only, equal scale, same baseline, perfectly face-on, consistent lighting; genuine transparent alpha.

@@ -201,14 +201,14 @@ void setup()
    lv_example_btn_1();
    */
 
-  // uncomment one of these demos
-      lv_demo_widgets(); // OK
-                     //lv_demo_benchmark(); // OK
-                     //  lv_demo_keypad_encoder();
-                     //  works, but I haven't an encoder
-                     //  lv_demo_music();              // NOK
-                     //  lv_demo_printer();
-                     //  lv_demo_stress();             // seems to be OK
+	// uncomment one of these demos
+	lv_demo_widgets(); // OK
+	//lv_demo_benchmark(); // OK
+	//lv_demo_keypad_encoder(); // NOK
+	// works, but I haven't an encoder
+	//lv_demo_music();              // NOK
+	//lv_demo_printer();    // NOK
+	//lv_demo_stress();             // seems to be OK
 #endif
   Serial.println("Setup done");
 }

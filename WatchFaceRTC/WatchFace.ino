@@ -1,3 +1,5 @@
+#include <Arduino.h>
+#include <string.h>
 #include "BoardDisplay.h"
 #include "WatchFaceDrawing.h"
 #include "WiFiCredentials.h"

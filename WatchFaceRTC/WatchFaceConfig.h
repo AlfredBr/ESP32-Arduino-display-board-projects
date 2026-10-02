@@ -1,4 +1,5 @@
 #pragma once
+#include <stdint.h>
 
 // America/New_York: automatic Eastern Standard / Daylight Time.
 // POSIX TZ notation uses the opposite sign from a UTC offset.

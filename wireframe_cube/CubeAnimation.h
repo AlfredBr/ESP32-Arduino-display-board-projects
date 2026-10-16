@@ -8,6 +8,7 @@
 #include "OctahedronShape.h"
 #include "DodecahedronShape.h"
 #include "IcosahedronShape.h"
+#include "TruncatedIcosahedronShape.h"
 #if HIDDEN_LINE_REMOVAL
 #include "ShapeVisibility.h"
 #endif
@@ -18,7 +19,7 @@ constexpr float TAU = 6.28318530718f;
 constexpr EdgeFaces SHAPE_FACES[] = {
   makeEdgeFaces(CubeShape::MESH), makeEdgeFaces(TetrahedronShape::MESH),
   makeEdgeFaces(OctahedronShape::MESH), makeEdgeFaces(DodecahedronShape::MESH),
-  makeEdgeFaces(IcosahedronShape::MESH)
+  makeEdgeFaces(IcosahedronShape::MESH), makeEdgeFaces(TruncatedIcosahedronShape::MESH)
 };
 #endif
 class Animation {
@@ -30,6 +31,7 @@ class Animation {
       case Shape::Octahedron: return OctahedronShape::MESH;
       case Shape::Dodecahedron: return DodecahedronShape::MESH;
       case Shape::Icosahedron: return IcosahedronShape::MESH;
+      case Shape::TruncatedIcosahedron: return TruncatedIcosahedronShape::MESH;
       default: return CubeShape::MESH;
     }
   }

@@ -3,7 +3,8 @@
 
 namespace Cube
 {
-	constexpr int MAX_VERTICES = 20;
+	constexpr int MAX_VERTICES = 60;
+	constexpr int MAX_EDGES = 90;
 	enum class Shape
 	{
 		Cube,
@@ -11,6 +12,7 @@ namespace Cube
 		Octahedron,
 		Dodecahedron,
 		Icosahedron,
+		TruncatedIcosahedron,
 		Count
 	};
 	inline const char* shapeName(Shape shape) {
@@ -20,6 +22,7 @@ namespace Cube
 			case Shape::Octahedron: return "Octahedron";
 			case Shape::Dodecahedron: return "Dodecahedron";
 			case Shape::Icosahedron: return "Icosahedron";
+			case Shape::TruncatedIcosahedron: return "Truncated Icosahedron";
 			default: return "";
 		}
 	}

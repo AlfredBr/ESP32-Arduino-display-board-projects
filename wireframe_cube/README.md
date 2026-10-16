@@ -5,14 +5,17 @@ A perspective-projected 3D cube for the **Waveshare ESP32-S3-Touch-AMOLED-1.8 V2
 depth-shaded blue and icy-cyan edges on black.
 Continuous rotation around three axes keeps the motion varied.
 The display cycles every 20 seconds through the blue cube, a gold tetrahedron,
-magenta octahedron, green dodecahedron, and pink icosahedron, then repeats.
+magenta octahedron, green dodecahedron, pink icosahedron, and white truncated
+icosahedron, then repeats (120 seconds total).
 A centered white label below the animation shows the current shape's name.
-Hidden-line removal is enabled by default for all five convex solids. Set
+Hidden-line removal is enabled by default for all six convex solids. Set
 `HIDDEN_LINE_REMOVAL` to `0` in `CubeConfig.h` to show every edge, or `1` to
 hide rear edges. Rebuild and upload after changing this compile-time setting.
 The renderer keeps an edge when either adjacent face faces the perspective
 camera; face-plane tables are computed at compile time.
-Rotation continues across each switch. All five shapes share the same vertex
+The truncated icosahedron has 60 vertices, 90 edges, 12 pentagonal faces and
+20 hexagonal faces. Its geometry is in `TruncatedIcosahedronShape.h`.
+Rotation continues across each switch. All six shapes share the same vertex
 radius and antialiased glow renderer. Each shape's geometry and color live in
 its own `*Shape.h` file; `ShapeTypes.h` defines their shared mesh format.
 

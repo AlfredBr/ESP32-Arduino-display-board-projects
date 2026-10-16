@@ -3,7 +3,7 @@
 
 namespace Cube {
 struct FacePlane { Vertex normal; float offset; };
-struct EdgeFaces { FacePlane faces[30][2] = {}; };
+struct EdgeFaces { FacePlane faces[MAX_EDGES][2] = {}; };
 
 // Find the two supporting face planes at each edge of a convex solid.
 // Evaluated at compile time; no face discovery is needed while animating.
@@ -25,7 +25,7 @@ constexpr EdgeFaces makeEdgeFaces(const Mesh& mesh) {
       for (int j = 0; j < mesh.vertexCount; ++j) {
         const Vertex v = mesh.vertices[j];
         if (n.x*v.x + n.y*v.y + n.z*v.z > offset + 0.0001f)
-          supporting = false;
+          { supporting = false; break; }
       }
       if (!supporting) continue;
       // Scaling to offset=1 also makes coplanar candidates easy to deduplicate.

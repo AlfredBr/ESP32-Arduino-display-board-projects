@@ -34,12 +34,36 @@ static void preview(const char* path, const uint16_t* frame) {
 }
 int main(int argc, char** argv) {
   const Cube::Mesh meshes[] = {Cube::CubeShape::MESH, Cube::TetrahedronShape::MESH,
-    Cube::OctahedronShape::MESH, Cube::DodecahedronShape::MESH, Cube::IcosahedronShape::MESH};
-  const int expectedEdges[] = {12, 6, 12, 30, 30};
-  const int expectedDegrees[] = {3, 3, 4, 3, 5};
-  for (int shape = 0; shape < 5; ++shape) {
+    Cube::OctahedronShape::MESH, Cube::DodecahedronShape::MESH, Cube::IcosahedronShape::MESH,
+    Cube::TruncatedIcosahedronShape::MESH};
+  const int expectedEdges[] = {12, 6, 12, 30, 30, 90};
+  const int expectedDegrees[] = {3, 3, 4, 3, 5, 3};
+  for (int shape = 0; shape < static_cast<int>(Cube::Shape::Count); ++shape) {
     const auto& mesh = meshes[shape];
     const auto faces = Cube::makeEdgeFaces(mesh);
+    if (shape == static_cast<int>(Cube::Shape::TruncatedIcosahedron)) {
+      std::vector<Cube::Vertex> normals;
+      int pentagons = 0, hexagons = 0;
+      for (int edge = 0; edge < mesh.edgeCount; ++edge) {
+        for (const auto& plane : faces.faces[edge]) {
+          const auto n = plane.normal;
+          bool seen = false;
+          for (const auto& old : normals)
+            if (fabsf(n.x-old.x)+fabsf(n.y-old.y)+fabsf(n.z-old.z) < 0.0001f) seen = true;
+          if (seen) continue;
+          normals.push_back(n);
+          int vertices = 0;
+          for (int i = 0; i < mesh.vertexCount; ++i) {
+            const auto& v = mesh.vertices[i];
+            if (fabsf(n.x*v.x+n.y*v.y+n.z*v.z-1) < 0.0001f) ++vertices;
+          }
+          assert(vertices == 5 || vertices == 6);
+          pentagons += vertices == 5;
+          hexagons += vertices == 6;
+        }
+      }
+      assert(pentagons == 12 && hexagons == 20);
+    }
     for (int edge = 0; edge < mesh.edgeCount; ++edge) {
       for (const auto& face : faces.faces[edge]) {
         assert(face.offset == 1);
@@ -113,6 +137,9 @@ int main(int argc, char** argv) {
   assert((pink >> 11) > 15 && (pink >> 11) > (pink & 31));
   assert((pink & 31) > 10 && ((pink >> 5) & 63) < 2 * (pink >> 11));
   timing.update(20);
+  assert(timing.shape() == Cube::Shape::TruncatedIcosahedron && timing.vertexCount() == 60);
+  timing.draw(frame);
+  timing.update(20);
   assert(timing.shape() == Cube::Shape::Cube && timing.vertexCount() == 8);
   Cube::Animation cube, replay;
   cube.draw(frame);
@@ -155,6 +182,6 @@ int main(int argc, char** argv) {
     }
     if (step == 0) assert(hash(frame,count) != initial);
   }
-  puts("PASS: shape cycle timing, all five colors, antialias coverage, motion, RGB565, guarded framebuffer, all-shape projection bounds, rigid rotation, 10-minute simulation and deterministic replay");
+  puts("PASS: six-shape geometry, face planes, cycle timing, colors, antialias coverage, motion, guarded framebuffer, projection bounds, rigid rotation, 10-minute simulation and deterministic replay");
 }
 

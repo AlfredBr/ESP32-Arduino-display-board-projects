@@ -1,3 +1,4 @@
+WiFiCredentials.h
 # Arduino build and dependency output
 **/build/
 **/.dependencies/

@@ -1,0 +1,15 @@
+# Arduino build and dependency output
+**/build/
+**/.dependencies/
+**/.pio/
+**/arduino_build_*/
+**/arduino_cache_*/
+
+# Python-generated files from asset and preview scripts
+**/__pycache__/
+*.py[cod]
+
+# Local logs and operating-system metadata
+*.log
+.DS_Store
+Thumbs.db

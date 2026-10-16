@@ -1,4 +1,4 @@
-# Arduino display projects
+# My ESP32 / Arduino display board projects
 
 A collection of ESP32 sketches for small displays: animated graphics, watch
 faces, touchscreen tools, and hardware experiments. Each project is a separate

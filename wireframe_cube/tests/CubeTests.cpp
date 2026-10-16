@@ -1,4 +1,5 @@
 #include "../CubeAnimation.h"
+#include "../ShapeVisibility.h"
 #include <assert.h>
 #include <stdio.h>
 #include <vector>
@@ -38,6 +39,20 @@ int main(int argc, char** argv) {
   const int expectedDegrees[] = {3, 3, 4, 3, 5};
   for (int shape = 0; shape < 5; ++shape) {
     const auto& mesh = meshes[shape];
+    const auto faces = Cube::makeEdgeFaces(mesh);
+    for (int edge = 0; edge < mesh.edgeCount; ++edge) {
+      for (const auto& face : faces.faces[edge]) {
+        assert(face.offset == 1);
+        for (int vertex = 0; vertex < mesh.vertexCount; ++vertex) {
+          const auto& v = mesh.vertices[vertex];
+          assert(face.normal.x*v.x + face.normal.y*v.y + face.normal.z*v.z < 1.0001f);
+        }
+        for (int endpoint : mesh.edges[edge]) {
+          const auto& v = mesh.vertices[endpoint];
+          assert(fabsf(face.normal.x*v.x + face.normal.y*v.y + face.normal.z*v.z - 1) < 0.0001f);
+        }
+      }
+    }
     assert(mesh.edgeCount == expectedEdges[shape]);
     int degrees[Cube::MAX_VERTICES] = {};
     float edgeLength2 = 0;
@@ -58,6 +73,13 @@ int main(int argc, char** argv) {
       assert(fabsf(v.x*v.x + v.y*v.y + v.z*v.z - 3) < 0.0001f);
     }
   }
+  const auto cubeFaces = Cube::makeEdgeFaces(Cube::CubeShape::MESH);
+  int frontEdges = 0, angledEdges = 0;
+  for (int edge = 0; edge < 12; ++edge) {
+    frontEdges += Cube::edgeVisible(cubeFaces, edge, {0,0,-5.5f});
+    angledEdges += Cube::edgeVisible(cubeFaces, edge, {5,4,-6});
+  }
+  assert(frontEdges == 4 && angledEdges == 9);
   constexpr size_t count = CubeConfig::WIDTH * CubeConfig::HEIGHT;
   std::vector<uint16_t> guarded(count + 2, 0xA55A), duplicate(count);
   uint16_t* frame = guarded.data() + 1;

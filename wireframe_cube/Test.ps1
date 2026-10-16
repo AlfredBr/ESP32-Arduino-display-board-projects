@@ -7,11 +7,14 @@ $temp = Join-Path ([System.IO.Path]::GetTempPath()) ('cube-tests-' + [guid]::New
 New-Item -ItemType Directory -Path $temp | Out-Null
 try {
     $exe = Join-Path $temp 'CubeTests.exe'
-    & g++ -std=c++17 -O2 -Wall -Wextra -Werror (Join-Path $PSScriptRoot 'tests\CubeTests.cpp') -o $exe
-    if ($LASTEXITCODE -ne 0) { throw 'Native compilation failed.' }
     $bmp = Join-Path $temp 'preview.bmp'
-    & $exe $bmp
-    if ($LASTEXITCODE -ne 0) { throw 'Renderer tests failed.' }
+    foreach ($hiddenLines in @(0, 1)) {
+        & g++ -std=c++17 -O2 -Wall -Wextra -Werror "-DHIDDEN_LINE_REMOVAL=$hiddenLines" (Join-Path $PSScriptRoot 'tests\CubeTests.cpp') -o $exe
+        if ($LASTEXITCODE -ne 0) { throw 'Native compilation failed.' }
+        & $exe $bmp
+        if ($LASTEXITCODE -ne 0) { throw 'Renderer tests failed.' }
+        Write-Host "Hidden-line removal=$hiddenLines passed."
+    }
     if ($Preview) {
         Add-Type -AssemblyName System.Drawing
         $image = [System.Drawing.Image]::FromFile($bmp)

@@ -1,6 +1,11 @@
 #pragma once
 #include <stdint.h>
 
+// Set to 0 to show all wireframe edges, or 1 to hide rear edges.
+#ifndef HIDDEN_LINE_REMOVAL
+#define HIDDEN_LINE_REMOVAL 1
+#endif
+
 namespace CubeConfig {
 constexpr int WIDTH = 288;
 constexpr int HEIGHT = 288;

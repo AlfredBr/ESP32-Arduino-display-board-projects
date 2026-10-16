@@ -8,9 +8,19 @@
 #include "OctahedronShape.h"
 #include "DodecahedronShape.h"
 #include "IcosahedronShape.h"
+#if HIDDEN_LINE_REMOVAL
+#include "ShapeVisibility.h"
+#endif
 
 namespace Cube {
 constexpr float TAU = 6.28318530718f;
+#if HIDDEN_LINE_REMOVAL
+constexpr EdgeFaces SHAPE_FACES[] = {
+  makeEdgeFaces(CubeShape::MESH), makeEdgeFaces(TetrahedronShape::MESH),
+  makeEdgeFaces(OctahedronShape::MESH), makeEdgeFaces(DodecahedronShape::MESH),
+  makeEdgeFaces(IcosahedronShape::MESH)
+};
+#endif
 class Animation {
   float angleX = 0.35f, angleY = 0.55f, angleZ = 0.12f;
   double shapeSeconds = 0;
@@ -104,7 +114,19 @@ public:
     Point points[MAX_VERTICES];
     project(points);
     const Mesh current = mesh();
+#if HIDDEN_LINE_REMOVAL
+    // Inverse-rotate the perspective camera (0,0,-distance) into model space.
+    // Z rotation leaves that camera position unchanged.
+    const float distance = CubeConfig::CAMERA_DISTANCE;
+    const Vertex camera{distance * sinf(angleY),
+      -distance * cosf(angleY) * sinf(angleX),
+      -distance * cosf(angleY) * cosf(angleX)};
+    const EdgeFaces& faces = SHAPE_FACES[static_cast<int>(shape())];
+#endif
     for (int i = 0; i < current.edgeCount; ++i) {
+#if HIDDEN_LINE_REMOVAL
+      if (!edgeVisible(faces, i, camera)) continue;
+#endif
       const auto& edge = current.edges[i];
       line(frame, points[edge[0]], points[edge[1]]);
     }

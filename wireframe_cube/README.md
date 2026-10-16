@@ -1,12 +1,17 @@
 # Spinning wireframe cube
 
 A perspective-projected 3D cube for the **Waveshare ESP32-S3-Touch-AMOLED-1.8 V2**
-(368 x 448 CO5300 panel), matching the S3 sibling project. All twelve edges remain
-visible, with dim blue rear edges and brighter icy-cyan near edges on black.
+(368 x 448 CO5300 panel), matching the S3 sibling project. The cube uses
+depth-shaded blue and icy-cyan edges on black.
 Continuous rotation around three axes keeps the motion varied.
 The display cycles every 20 seconds through the blue cube, a gold tetrahedron,
 magenta octahedron, green dodecahedron, and pink icosahedron, then repeats.
 A centered white label below the animation shows the current shape's name.
+Hidden-line removal is enabled by default for all five convex solids. Set
+`HIDDEN_LINE_REMOVAL` to `0` in `CubeConfig.h` to show every edge, or `1` to
+hide rear edges. Rebuild and upload after changing this compile-time setting.
+The renderer keeps an edge when either adjacent face faces the perspective
+camera; face-plane tables are computed at compile time.
 Rotation continues across each switch. All five shapes share the same vertex
 radius and antialiased glow renderer. Each shape's geometry and color live in
 its own `*Shape.h` file; `ShapeTypes.h` defines their shared mesh format.

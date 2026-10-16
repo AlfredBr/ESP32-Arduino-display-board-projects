@@ -28,7 +28,7 @@ void setup() {
     return;
   }
   cube.draw(frame);
-  screen.present(frame);
+  screen.present(frame, cube.shape());
   previousFrameUs = reportUs = esp_timer_get_time();
   Serial.printf("Cube: ready, ESP32-S3, %dx%d RGB565, PSRAM=%u, target=%d FPS\n",
     CubeConfig::WIDTH, CubeConfig::HEIGHT, static_cast<unsigned>(ESP.getPsramSize()), CubeConfig::FPS);
@@ -43,7 +43,7 @@ void loop() {
   cube.update(elapsed / 1000000.0f);
   cube.draw(frame);
   const int64_t rendered = esp_timer_get_time();
-  screen.present(frame);
+  screen.present(frame, cube.shape());
   const int64_t presented = esp_timer_get_time();
   renderTotalUs += rendered - now;
   transferTotalUs += presented - rendered;

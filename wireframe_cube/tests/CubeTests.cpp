@@ -86,10 +86,10 @@ int main(int argc, char** argv) {
   timing.update(20);
   assert(timing.shape() == Cube::Shape::Icosahedron && timing.vertexCount() == 12);
   timing.draw(frame);
-  uint16_t white = 0;
-  for (size_t i = 0; i < count; ++i) if (frame[i] > white) white = frame[i];
-  assert((white >> 11) > 15 && (white >> 11) == (white & 31));
-  assert(abs(static_cast<int>((white >> 5) & 63) - 2 * (white >> 11)) <= 1);
+  uint16_t pink = 0;
+  for (size_t i = 0; i < count; ++i) if (frame[i] > pink) pink = frame[i];
+  assert((pink >> 11) > 15 && (pink >> 11) > (pink & 31));
+  assert((pink & 31) > 10 && ((pink >> 5) & 63) < 2 * (pink >> 11));
   timing.update(20);
   assert(timing.shape() == Cube::Shape::Cube && timing.vertexCount() == 8);
   Cube::Animation cube, replay;

@@ -5,7 +5,8 @@ A perspective-projected 3D cube for the **Waveshare ESP32-S3-Touch-AMOLED-1.8 V2
 visible, with dim blue rear edges and brighter icy-cyan near edges on black.
 Continuous rotation around three axes keeps the motion varied.
 The display cycles every 20 seconds through the blue cube, a gold tetrahedron,
-magenta octahedron, green dodecahedron, and white icosahedron, then repeats.
+magenta octahedron, green dodecahedron, and pink icosahedron, then repeats.
+A centered white label below the animation shows the current shape's name.
 Rotation continues across each switch. All five shapes share the same vertex
 radius and antialiased glow renderer. Each shape's geometry and color live in
 its own `*Shape.h` file; `ShapeTypes.h` defines their shared mesh format.

@@ -50,6 +50,6 @@ constexpr uint8_t EDGES[30][2] = {
   {10,11}
 };
 constexpr Mesh MESH = {VERTICES, 12, EDGES, 30,
-  {255,255,255}, {0,0,0}};
+  {255,130,180}, {0,0,0}};
 }
 }

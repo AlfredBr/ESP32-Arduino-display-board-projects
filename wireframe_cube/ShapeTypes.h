@@ -13,6 +13,16 @@ namespace Cube
 		Icosahedron,
 		Count
 	};
+	inline const char* shapeName(Shape shape) {
+		switch (shape) {
+			case Shape::Cube: return "Cube";
+			case Shape::Tetrahedron: return "Tetrahedron";
+			case Shape::Octahedron: return "Octahedron";
+			case Shape::Dodecahedron: return "Dodecahedron";
+			case Shape::Icosahedron: return "Icosahedron";
+			default: return "";
+		}
+	}
 	struct Vertex
 	{
 		float x, y, z;

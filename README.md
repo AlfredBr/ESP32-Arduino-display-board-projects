@@ -8,6 +8,8 @@ Most visual projects use an **ESP32-C3 with a round 240 × 240 GC9A01 display**.
 The Waveshare projects use the **ESP32-S3-Touch-AMOLED-1.8 V2**, with a
 368 × 448 CO5300 AMOLED. Check each project's configuration before building.
 
+Note:  These inexpensive boards are easily obtained from AliExpress.
+
 ## Display gallery
 
 These facsimiles use the projects' existing desktop-rendered preview frames.

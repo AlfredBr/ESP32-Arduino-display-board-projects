@@ -118,6 +118,3 @@ size, detected PSRAM and target FPS. No waiting for a serial connection blocks a
 The ESP32-S3 V2 build passed: 396,316 bytes flash and 24,744 bytes static RAM,
 plus the runtime framebuffer. Native tests passed with `-Wall -Wextra -Werror`,
 and the generated preview was visually inspected. VS Code reported no errors.
-An upload to COM6 was attempted, but Windows denied access because the port was
-busy. Deployment, measured device FPS and physical visual smoothness therefore
-remain unverified; close the program holding COM6 and run the upload command above.

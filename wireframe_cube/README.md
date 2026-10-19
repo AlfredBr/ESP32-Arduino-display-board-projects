@@ -38,6 +38,43 @@ therefore needs that sibling folder. No downloads, network, touch, audio, or
 external artwork are required. V2 uses the sibling's XCA9554 reset sequence and
 QSPI pins: CS 12, clock 11, data 4/5/6/7; I2C SDA 15 and SCL 14.
 
+### CMake / Makefile workflow
+
+From the Arduino workspace root, with CMake and `mingw32-make` on `PATH`:
+
+```powershell
+cmake -S wireframe_cube -B wireframe_cube/build -G "MinGW Makefiles"
+cmake --build wireframe_cube/build
+cmake --build wireframe_cube/build --target upload-plan
+cmake --build wireframe_cube/build --target upload
+```
+
+The default target (also named `build`) compiles only. `upload-plan` prints the
+upload command without compiling or flashing. `upload` compiles and flashes only
+after compilation succeeds. Each target calls the existing `Build.ps1`, retaining
+its board settings, library selection and error handling. Arduino CLI handles
+incremental compilation; Make invokes the script on every build request.
+
+You can also invoke the generated Makefile directly:
+
+```powershell
+mingw32-make -C wireframe_cube/build build
+mingw32-make -C wireframe_cube/build upload
+```
+
+Change cached settings by configuring again, for example:
+
+```powershell
+cmake -S wireframe_cube -B wireframe_cube/build -DARDUINO_PORT=COM7 -DARDUINO_REVISION=original
+```
+
+Defaults are `ARDUINO_PORT=COM6` and `ARDUINO_REVISION=v2`. Optional
+`ARDUINO_CLI_PATH`, `ARDUINO_CONFIG_FILE`, and `ARDUINO_FQBN` overrides accept the
+same values as the corresponding `Build.ps1` parameters; empty values preserve
+the script defaults. Quote any `-DNAME=value` argument containing spaces.
+Generated Makefiles and CMake cache files stay in the ignored `build/` folder.
+Use PowerShell or a Windows command prompt for the MinGW Makefiles workflow.
+
 ## Smooth graphics
 
 - Analytic subpixel edge coverage, rounded ends and a subtle halo avoid jagged lines.

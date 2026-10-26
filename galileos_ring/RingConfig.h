@@ -22,6 +22,12 @@ constexpr uint32_t FRAME_MS = 20;
 constexpr int TRAIL_STEPS = 8;              // segments per trail
 constexpr uint32_t TRAIL_STEP_MS = 30;      // time covered by each segment
 constexpr float TRAIL_BRIGHTNESS = 0.8f;    // newest segment brightness, 0..1
+// GALILEO_BLOOM (Build.ps1 -Bloom): peak-speed brightening at mid-swing.
+constexpr float BLOOM_WHITE = 0.55f;        // blend toward white at peak speed, 0..1
+constexpr float BLOOM_HALO = 0.6f;          // halo brightness at peak speed, 0..1
+// GALILEO_CARTESIAN (Build.ps1 -Cartesian): a row of balls swinging up and down.
+constexpr float CART_AMPLITUDE = 56.0f;     // swing either side of the centre line, px
+constexpr float CART_HALF_WIDTH = 96.0f;    // half the row length, px
 constexpr float CENTER = 119.5f;
 constexpr float MID_R = 66.0f;          // swing centre radius
 constexpr float AMPLITUDE = 38.0f;      // swing radius either side of MID_R

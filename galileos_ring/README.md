@@ -20,6 +20,19 @@ For a pendulum count `n`, the phase difference between neighbours is `2π·t / T
 
 `-Trails` defines `GALILEO_TRAILS` and draws a fading comet tail behind every ball. It combines freely with `-MaxNodes`. Trails are replayed analytically from earlier phases (no per-ball history), and their length, spacing and brightness are `TRAIL_STEPS`, `TRAIL_STEP_MS` and `TRAIL_BRIGHTNESS` in `RingConfig.h`.
 
+More optional looks, each a switch that combines freely with the others:
+
+| Switch | Define | Effect |
+|--------|--------|--------|
+| `-Rainbow` | `GALILEO_RAINBOW` | Ball (and trail) hue follows each pendulum's swing phase, so the waves appear as colour bands |
+| `-Bloom` | `GALILEO_BLOOM` | Balls whiten and gain a halo at peak speed (mid-swing); tune with `BLOOM_WHITE`, `BLOOM_HALO` |
+| `-Cartesian` | `GALILEO_CARTESIAN` | Classic pendulum-wave view: a horizontal row of balls swinging up and down instead of radial spokes (the three groups appear as three repeats); tune with `CART_AMPLITUDE`, `CART_HALF_WIDTH` |
+
+```powershell
+.\galileos_ring\Build.ps1 -MaxNodes -Trails -Rainbow -Bloom -Upload -Port COM4
+.\galileos_ring\Build.ps1 -MaxNodes -Rainbow -Cartesian -Upload -Port COM4
+```
+
 The default build has 48 pendulums (3 × 16). `-MaxNodes` defines `GALILEO_MAX_NODES` and builds the densest legible ring: 96 pendulums (3 × 32) with smaller balls and no glow. At the innermost swing radius the spokes are only about 1.8 px apart, so going denser would merge the balls. You can also `#define GALILEO_MAX_NODES` at the top of `RingConfig.h`.
 
 Use your device's actual serial port (COM4 on the author's machine; the script's default is COM3). `Build.ps1` points arduino-cli at the workspace's shared `Libraries\` folder for LovyanGFX. Close Serial Monitor before uploading.

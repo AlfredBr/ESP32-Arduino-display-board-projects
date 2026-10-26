@@ -18,6 +18,9 @@ param(
     [switch]$Upload,
     [switch]$MaxNodes,
     [switch]$Trails,
+    [switch]$Rainbow,
+    [switch]$Bloom,
+    [switch]$Cartesian,
     [switch]$DryRun
 )
 
@@ -68,6 +71,9 @@ try {
     $defines = @()
     if ($MaxNodes) { $defines += '-DGALILEO_MAX_NODES' }
     if ($Trails) { $defines += '-DGALILEO_TRAILS' }
+    if ($Rainbow) { $defines += '-DGALILEO_RAINBOW' }
+    if ($Bloom) { $defines += '-DGALILEO_BLOOM' }
+    if ($Cartesian) { $defines += '-DGALILEO_CARTESIAN' }
     if ($defines.Count -gt 0) {
         $cliArguments += @('--build-property', ('compiler.cpp.extra_flags=' + ($defines -join ' ')))
     }

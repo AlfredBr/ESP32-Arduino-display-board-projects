@@ -17,6 +17,7 @@ param(
     [string]$Port = 'COM3',
     [switch]$Upload,
     [switch]$MaxNodes,
+    [switch]$Trails,
     [switch]$DryRun
 )
 
@@ -64,8 +65,11 @@ try {
     if (Test-Path -LiteralPath $sharedLibraries -PathType Container) {
         $cliArguments += @('--libraries', $sharedLibraries)
     }
-    if ($MaxNodes) {
-        $cliArguments += @('--build-property', 'compiler.cpp.extra_flags=-DGALILEO_MAX_NODES')
+    $defines = @()
+    if ($MaxNodes) { $defines += '-DGALILEO_MAX_NODES' }
+    if ($Trails) { $defines += '-DGALILEO_TRAILS' }
+    if ($defines.Count -gt 0) {
+        $cliArguments += @('--build-property', ('compiler.cpp.extra_flags=' + ($defines -join ' ')))
     }
     if ($Upload) {
         $cliArguments += @('--upload', '--port', $Port)

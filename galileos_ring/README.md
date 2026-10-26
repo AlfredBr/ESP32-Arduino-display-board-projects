@@ -14,7 +14,11 @@ For a pendulum count `n`, the phase difference between neighbours is `2π·t / T
 .\galileos_ring\Build.ps1
 .\galileos_ring\Build.ps1 -Upload -Port COM4
 .\galileos_ring\Build.ps1 -MaxNodes -Upload -Port COM4
+.\galileos_ring\Build.ps1 -Trails -Upload -Port COM4
+.\galileos_ring\Build.ps1 -MaxNodes -Trails -Upload -Port COM4
 ```
+
+`-Trails` defines `GALILEO_TRAILS` and draws a fading comet tail behind every ball. It combines freely with `-MaxNodes`. Trails are replayed analytically from earlier phases (no per-ball history), and their length, spacing and brightness are `TRAIL_STEPS`, `TRAIL_STEP_MS` and `TRAIL_BRIGHTNESS` in `RingConfig.h`.
 
 The default build has 48 pendulums (3 × 16). `-MaxNodes` defines `GALILEO_MAX_NODES` and builds the densest legible ring: 96 pendulums (3 × 32) with smaller balls and no glow. At the innermost swing radius the spokes are only about 1.8 px apart, so going denser would merge the balls. You can also `#define GALILEO_MAX_NODES` at the top of `RingConfig.h`.
 

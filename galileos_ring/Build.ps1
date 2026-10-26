@@ -21,6 +21,10 @@ param(
     [switch]$Rainbow,
     [switch]$Bloom,
     [switch]$Cartesian,
+    [switch]$Mirror,
+    [switch]$Wave,
+    [switch]$Auto,
+    [switch]$Stats,
     [switch]$DryRun
 )
 
@@ -74,6 +78,16 @@ try {
     if ($Rainbow) { $defines += '-DGALILEO_RAINBOW' }
     if ($Bloom) { $defines += '-DGALILEO_BLOOM' }
     if ($Cartesian) { $defines += '-DGALILEO_CARTESIAN' }
+    if ($Mirror) {
+        $defines += '-DGALILEO_MIRROR'
+        if (-not $Cartesian -and -not $Auto) {
+            Write-Host 'Note: -Mirror only affects the Cartesian row view; adding -Cartesian.'
+            $defines += '-DGALILEO_CARTESIAN'
+        }
+    }
+    if ($Wave) { $defines += '-DGALILEO_WAVE' }
+    if ($Auto) { $defines += '-DGALILEO_AUTO' }
+    if ($Stats) { $defines += '-DGALILEO_STATS' }
     if ($defines.Count -gt 0) {
         $cliArguments += @('--build-property', ('compiler.cpp.extra_flags=' + ($defines -join ' ')))
     }

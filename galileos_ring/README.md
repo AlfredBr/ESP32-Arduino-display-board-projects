@@ -13,7 +13,10 @@ For a pendulum count `n`, the phase difference between neighbours is `2π·t / T
 ```powershell
 .\galileos_ring\Build.ps1
 .\galileos_ring\Build.ps1 -Upload -Port COM4
+.\galileos_ring\Build.ps1 -MaxNodes -Upload -Port COM4
 ```
+
+The default build has 48 pendulums (3 × 16). `-MaxNodes` defines `GALILEO_MAX_NODES` and builds the densest legible ring: 96 pendulums (3 × 32) with smaller balls and no glow. At the innermost swing radius the spokes are only about 1.8 px apart, so going denser would merge the balls. You can also `#define GALILEO_MAX_NODES` at the top of `RingConfig.h`.
 
 Use your device's actual serial port (COM4 on the author's machine; the script's default is COM3). `Build.ps1` points arduino-cli at the workspace's shared `Libraries\` folder for LovyanGFX. Close Serial Monitor before uploading.
 

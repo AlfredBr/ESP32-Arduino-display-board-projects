@@ -27,8 +27,8 @@ static void drawScene() {
     int swings = RingConfig::BASE_OSC + (k % RingConfig::GROUP);
     float r = RingConfig::MID_R + RingConfig::AMPLITUDE * cosf(phaseBase * swings);
     int x = int(c + dirX[k] * r + 0.5f), y = int(c + dirY[k] * r + 0.5f);
-    canvas.fillCircle(x, y, 3, RingConfig::GLOW_COLOR);
-    canvas.fillCircle(x, y, 2, ballColor[k]);
+    if (RingConfig::BALL_GLOW) canvas.fillCircle(x, y, RingConfig::BALL_R + 1, RingConfig::GLOW_COLOR);
+    canvas.fillCircle(x, y, RingConfig::BALL_R, ballColor[k]);
   }
   canvas.fillCircle(int(c), int(c), RingConfig::HUB_R, RingConfig::HUB_COLOR);
   canvas.pushSprite(0, 0);
@@ -48,11 +48,11 @@ void setup() {
     float a = 6.28318530718f * k / RingConfig::COUNT - 1.57079632679f; // pendulum 0 at top
     dirX[k] = cosf(a); dirY[k] = sinf(a);
     // Hue-free tint per group position gives a slight depth cue.
-    uint8_t g = 190 + (k % RingConfig::GROUP) * 4;
-    ballColor[k] = lcd.color565(150, g, 225 - (k % RingConfig::GROUP) * 3);
+    int t = (k % RingConfig::GROUP) * 48 / RingConfig::GROUP; // 0..47 across a group
+    ballColor[k] = lcd.color565(150, 190 + t, 225 - t);
   }
   drawScene(); lastFrame = millis();
-  Serial.println("Galileo's Ring II: 48 pendulums. Send SPACE to pause/resume.");
+  Serial.printf("Galileo's Ring II: %d pendulums. Send SPACE to pause/resume.\n", RingConfig::COUNT);
 }
 
 void loop() {

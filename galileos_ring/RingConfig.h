@@ -2,8 +2,19 @@
 #include <stdint.h>
 
 namespace RingConfig {
-constexpr int COUNT = 48;               // pendulums
-constexpr int GROUP = 16;               // pendulums per symmetric group (3 groups)
+// Define GALILEO_MAX_NODES (build with `Build.ps1 -MaxNodes`) for the densest
+// ring that stays legible on the 240 px display. At the innermost swing radius
+// (~28 px) 96 spokes sit about 1.8 px apart, so balls shrink to 3 px discs.
+#ifdef GALILEO_MAX_NODES
+constexpr int GROUP = 32;               // pendulums per symmetric group (3 groups)
+constexpr int BALL_R = 1;
+constexpr bool BALL_GLOW = false;
+#else
+constexpr int GROUP = 16;
+constexpr int BALL_R = 2;
+constexpr bool BALL_GLOW = true;
+#endif
+constexpr int COUNT = GROUP * 3;        // pendulums
 constexpr int BASE_OSC = 12;            // swings of the slowest pendulum per cycle
 constexpr uint32_t CYCLE_MS = 60000;    // time until all balls realign
 constexpr uint32_t FRAME_MS = 20;

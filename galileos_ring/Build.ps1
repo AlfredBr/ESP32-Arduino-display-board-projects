@@ -16,6 +16,7 @@ param(
     [string]$Fqbn = 'esp32:esp32:esp32c3:CDCOnBoot=cdc',
     [string]$Port = 'COM3',
     [switch]$Upload,
+    [switch]$MaxNodes,
     [switch]$DryRun
 )
 
@@ -62,6 +63,9 @@ try {
     $sharedLibraries = Join-Path (Split-Path -Parent $resolvedSketch) 'Libraries'
     if (Test-Path -LiteralPath $sharedLibraries -PathType Container) {
         $cliArguments += @('--libraries', $sharedLibraries)
+    }
+    if ($MaxNodes) {
+        $cliArguments += @('--build-property', 'compiler.cpp.extra_flags=-DGALILEO_MAX_NODES')
     }
     if ($Upload) {
         $cliArguments += @('--upload', '--port', $Port)

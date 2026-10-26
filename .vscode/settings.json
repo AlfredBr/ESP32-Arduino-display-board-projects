@@ -1,5 +1,6 @@
 {
   "files.associations": {
     "*.ino": "cpp"
-  }
+},
+"cmake.sourceDirectory": "D:/alfredbr/OneDrive/Documents/Arduino/wireframe_cube"
 }

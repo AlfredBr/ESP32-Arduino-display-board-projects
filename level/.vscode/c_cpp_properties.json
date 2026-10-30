@@ -1,0 +1,42 @@
+{
+  "version": 4,
+  "configurations": [
+    {
+      "name": "ESP32-S3",
+      "compilerPath": "${env:LOCALAPPDATA}/Arduino15/packages/esp32/tools/esp-x32/2601/bin/xtensa-esp32s3-elf-g++.exe",
+      "intelliSenseMode": "gcc-x64",
+      "cppStandard": "gnu++17",
+      "cStandard": "gnu17",
+      "defines": [
+        "ARDUINO=10819",
+        "ARDUINO_ESP32S3_DEV",
+        "ARDUINO_USB_CDC_ON_BOOT=1",
+        "ARDUINO_USB_MODE=1",
+        "ESP32",
+        "BOARD_AMOLED_V2=1",
+        "LV_CONF_SKIP",
+        "LV_COLOR_FORMAT_DEFAULT=LV_COLOR_FORMAT_RGB565",
+        "LV_MEM_SIZE=98304",
+        "LV_FONT_MONTSERRAT_20=1",
+        "LV_FONT_MONTSERRAT_48=1",
+        "LV_BUILD_EXAMPLES=0"
+      ],
+      "includePath": [
+        "${workspaceFolder}",
+        "${workspaceFolder}/../Libraries/lvgl",
+        "${workspaceFolder}/../Libraries/lvgl/src",
+        "${workspaceFolder}/../WaveshareHelloWorld/vendor/v2/libraries/GFX_Library_for_Arduino/src",
+        "${workspaceFolder}/../WaveshareHelloWorld/vendor/v2/libraries/Adafruit_XCA9554",
+        "${workspaceFolder}/../WaveshareHelloWorld/vendor/v2/libraries/Adafruit_BusIO",
+        "${workspaceFolder}/../WaveshareHelloWorld/vendor/v2/libraries/Mylibrary",
+        "${workspaceFolder}/../WaveshareHelloWorld/vendor/v2/libraries/SensorLib/src",
+        "${env:LOCALAPPDATA}/Arduino15/packages/esp32/hardware/esp32/3.3.12/cores/esp32",
+        "${env:LOCALAPPDATA}/Arduino15/packages/esp32/hardware/esp32/3.3.12/variants/esp32s3",
+        "${env:LOCALAPPDATA}/Arduino15/packages/esp32/hardware/esp32/3.3.12/libraries/Wire/src",
+        "${env:LOCALAPPDATA}/Arduino15/packages/esp32/hardware/esp32/3.3.12/libraries/SPI/src",
+        "${env:LOCALAPPDATA}/Arduino15/packages/esp32/tools/esp32s3-libs/3.3.12/include/**",
+        "${env:LOCALAPPDATA}/Arduino15/packages/esp32/tools/esp32s3-libs/3.3.12/qio_opi/include"
+      ]
+    }
+  ]
+}

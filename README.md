@@ -49,9 +49,11 @@ the underlying frames from the renderers.
 | [WatchFaceRTC](WatchFaceRTC/README.md) | Network-synchronized version of the digital watch face. |
 | [Breitling](Breitling/README.md) | Aerospace-inspired analog dial and weekday/date LCD. |
 | [Rolex](Rolex/README.md) | Analog watch-face project. |
+| [aplwatch](aplwatch/README.md) | S3 smartwatch-style faces: stacked pink digits, or a light fan between dark hands; tap to switch. |
 | [CoinFlip](CoinFlip/README.md) | Touch-triggered animated gold coin toss. |
 | [Dice](Dice/README.md) | Touch menu for tabletop dice and a gold coin. |
 | [PieMenu](PieMenu/README.md) | Custom LVGL radial buttons and touchscreen menu examples. |
+| [level](level/README.md) | S3 spirit level from the QMI8658 accelerometer: bullseye when flat, vial on an edge, tap to zero. |
 | [LVGL_Demo](LVGL_Demo/README.md) | LVGL 9 widget gallery for the round touch display. |
 | [HelloScreen](HelloScreen/README.md), [HelloScreenHD](HelloScreenHD/README.md) | Display greetings and uptime; HD variant uses larger fonts. |
 | [WaveshareHelloWorld](WaveshareHelloWorld/README.md) | S3 swipeable hardware tests: touch, sensors, audio, networking, storage, and clock. |

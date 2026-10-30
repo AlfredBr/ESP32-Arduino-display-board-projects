@@ -1,0 +1,23 @@
+Verification completed (2026-10-29, Waveshare ESP32-S3-Touch-AMOLED-1.8 V2):
+- ESP32-S3 build and COM5 upload succeeded; flash hashes verified by esptool.
+- Firmware: 706232 bytes (22%); static RAM: 153136 bytes (46%).
+- Desktop: Test.ps1 passed (round and fill layouts, three repeats, no
+  accumulating heap allocations).
+- Device: Check-Device.ps1 rebuilt all seven pages (2-8 slices) successfully.
+- Device: touch detected; a tap logged "Clicked slice 2: Music".
+- Fixed blank screen: the LVGL draw buffer was 2-byte aligned (0x3fc99fe2),
+  so lv_display_set_buffers rejected it and no frame was ever flushed.
+- Full-frame time, 4 slices, measured on device: 1024 ms -> 543 ms (integer
+  inside test) -> 217 ms (per-row scan windows). 8 slices was 1982 ms
+  originally and 1020 ms after the first step; not remeasured after the second.
+- Slices sized to their bounding boxes: press/release redraw measured on
+  device at 93/99/105/99/65 ms for 2/3/4/5/8 slices (full frame 183-222 ms).
+- Layout is a registered LVGL layout, so setters only mark the menu dirty.
+  Every page settles in 2 passes; rebuilds take 35-126 ms on device (were
+  370-1132 ms). A hidden full-pie center once made it loop 100 passes;
+  tests now check that layouts settle (78173 checks pass).
+- Device left on the four-slice page for hands-on review.
+- Physical touch accuracy and panel appearance still need user review.
+
+Fill mode: wedges extend to the rectangle's edges and corners; rendering and
+hit testing share one inside-the-slice test.

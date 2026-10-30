@@ -56,7 +56,7 @@ the underlying frames from the renderers.
 | [level](level/README.md) | S3 spirit level from the QMI8658 accelerometer: bullseye when flat, vial on an edge, tap to zero. |
 | [LVGL_Demo](LVGL_Demo/README.md) | LVGL 9 widget gallery for the round touch display. |
 | [HelloScreen](HelloScreen/README.md), [HelloScreenHD](HelloScreenHD/README.md) | Display greetings and uptime; HD variant uses larger fonts. |
-| [WaveshareHelloWorld](WaveshareHelloWorld/README.md) | S3 swipeable hardware tests: touch, sensors, audio, networking, storage, and clock. |
+| [WaveshareHelloWorld](WaveshareHelloWorld/README.md) | S3 swipeable hardware tests: touch, sensors, audio, networking, storage, and clock. See [FEATURES_S3.md](FEATURES_S3.md) for everything the S3 board can do. |
 | [wtxt](wtxt/README.md) | Network text-message display and PowerShell client. |
 
 The numbered folders contain factory, UART, LVGL benchmark/widgets, Wi-Fi,
